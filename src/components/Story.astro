@@ -1,0 +1,46 @@
+---
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const storyData = await fetch(
+  `https://hacker-news.firebaseio.com/v0/item/${id}.json`
+);
+const story = await storyData.json();
+
+// const id = "36748915";
+// const story = {
+//   "by" : "varjag",
+//   "descendants" : 7,
+//   "id" : 36748915,
+//   "kids" : [ 36749557, 36749529 ],
+//   "score" : 87,
+//   "time" : 1689525684,
+//   "title" : "A tutorial quantum interpreter in 150 lines of Lisp",
+//   "type" : "story",
+//   "url" : "https://www.stylewarning.com/posts/quantum-interpreter/"
+// };
+
+const time = new Date(story.time * 1000).toLocaleString()
+---
+<div class="border rounded-md bg-zinc-900 p-4 px-5 flex gap-4 justify-between shadow-md">
+  <div class="flex flex-col gap-3">
+    <p class="text-zinc-400 text-sm">
+      <span class="font-semibold">{time.split(", ")[0]}</span>
+      at
+      <span>{time.split(", ")[1]}</span> 
+    </p>
+    <h2 class="text-xl font-semibold">{story.title}</h2>
+    <p class="text-sm text-zinc-400">
+      by <span class="font-bold text-zinc-300">{story.by}</span>
+    </p>
+  </div>
+  {story.descendants > 0 &&
+    <div class="flex justify-center items-center">
+      <a href="/r" class="w-20 font-bold flex gap-2 px-4 py-2 border border-zinc-600 bg-zinc-900 shadow-md rounded-md justify-center items-center">
+        <img src="/discussion.svg" class="w-6 invert" />{story.descendants}
+      </a>
+    </div>
+  }
+</div>
