@@ -10,15 +10,11 @@ const stories = await storiesData.json();
 ---
 
 <Layout title="alt.hn">
-	<main class="flex flex-col gap-4 max-w-2xl">
+	<main class="flex flex-col gap-4 max-w-2xl px-8">
 		{
 			stories.map((id: string) => {
 				return <Story id={id} />;
 			})
 		}
-		<!-- <Story /> -->
-		<!-- <Story /> -->
-		<!-- <Story /> -->
-		<!-- <Story /> -->
 	</main>
 </Layout>
