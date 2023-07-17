@@ -10,7 +10,7 @@ const comment = await commentData.json();
 const time = new Date(comment.time * 1000).toLocaleString()
 ---
 {comment.text && (
-<article class=`border-zinc-800 flex flex-col ${isParent || 'pl-8 border-l'}`>
+<article class=`border-zinc-800 flex flex-col ${isParent || 'pl-6 lg:pl-8 border-l'}`>
   <p class="text-zinc-500 text-sm mb-1 mt-4">
     <span class="font-semibold">{time.split(", ")[0]}</span>
     at
