@@ -7,12 +7,28 @@ const storyData = await fetch(
   `https://hacker-news.firebaseio.com/v0/item/${id}.json`
 );
 const story = await storyData.json();
-
+const time = new Date(story.time * 1000).toLocaleString()
 ---
 <Layout title=`{story.title} | alt.hn`>
-	<main class="flex flex-col gap-4">
-	  {story.kids?.map((child: string) => 
+  <div>
+	  <main class="flex flex-col gap-3 border-b border-zinc-700 pb-4 px-8">
+      <p class="text-zinc-400 text-sm">
+        <span class="font-semibold">{time.split(", ")[0]}</span>
+          at
+        <span>{time.split(", ")[1]}</span> 
+      </p>
+      <a href={story.url} target="_blank">
+       <h2 class="text-xl font-semibold">{story.title}</h2>
+      </a>
+      <em class="text-sm tracking-wide text-zinc-400">{story.url}</em>
+      <p class="text-sm text-zinc-400">
+        by <span class="font-semibold">{story.by}</span>
+      </p>
+    </main>
+	  <section class="flex flex-col gap-4 px-8">
+	    {story.kids?.map((child: string) => 
 	      <Comment id={child} isParent={true} />
-	  )}
-	</main>
+	    )}
+	  </section>
+	</div>
 </Layout>
