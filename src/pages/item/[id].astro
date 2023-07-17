@@ -1,0 +1,18 @@
+---
+import Comment from "../../components/Comment.astro";
+import Layout from "../../layouts/Layout.astro";
+const { id } = Astro.params;
+
+const storyData = await fetch(
+  `https://hacker-news.firebaseio.com/v0/item/${id}.json`
+);
+const story = await storyData.json();
+
+---
+<Layout title=`{story.title} | alt.hn`>
+	<main class="flex flex-col gap-4">
+	  {story.kids?.map((child: string) => 
+	      <Comment id={child} isParent={true} />
+	  )}
+	</main>
+</Layout>

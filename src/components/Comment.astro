@@ -1,0 +1,25 @@
+---
+interface Props {
+  id: string;
+  isParent: true
+}
+const { id, isParent } = Astro.props;
+
+const commentData = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+const comment = await commentData.json();
+const time = new Date(comment.time * 1000).toLocaleString()
+---
+{comment.text && (
+<div class=`border-zinc-700 flex flex-col ${isParent || 'pl-8 border-l'}`>
+  <p class="text-zinc-400 text-sm mb-1 mt-4">
+    <span class="font-semibold">{time.split(", ")[0]}</span>
+    at
+    <span>{time.split(", ")[1]}</span> 
+  </p>
+  <span class="inline-block [&>pre]:whitespace-pre-wrap break-words"
+    set:html={comment.text} />
+  <p class="text-sm text-zinc-600 mt-1 mb-4">by <b class="text-zinc-500">{comment.by}</b></p>
+    {comment.kids?.map((child: string) => <Astro.self id={child}  />)}
+</div>)
+}
+

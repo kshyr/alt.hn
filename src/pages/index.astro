@@ -9,7 +9,7 @@ const storiesData = await fetch(
 const stories = await storiesData.json();
 ---
 
-<Layout title="Welcome to alt.hn">
+<Layout title="alt.hn">
 	<main class="flex flex-col gap-4 max-w-2xl">
 		{
 			stories.map((id: string) => {

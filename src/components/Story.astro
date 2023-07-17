@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { id } = Astro.props;
+
 const storyData = await fetch(
   `https://hacker-news.firebaseio.com/v0/item/${id}.json`
 );
@@ -40,7 +41,7 @@ const time = new Date(story.time * 1000).toLocaleString()
   </div>
   {story.descendants > 0 &&
     <div class="flex justify-center items-center">
-      <a href="/r" class="w-20 font-bold flex gap-2 px-4 py-2 border border-zinc-800 bg-zinc-900 shadow-md rounded-md justify-center items-center">
+      <a href=`/item/${id}` class="w-20 font-bold flex gap-2 px-4 py-2 border border-zinc-800 bg-zinc-900 shadow-md rounded-md justify-center items-center">
         <img src="/discussion.svg" class="w-6 invert" />{story.descendants}
       </a>
     </div>
