@@ -12,7 +12,9 @@ const time = new Date(story.time * 1000).toLocaleString();
 
 <Layout title=`{story.title} | alt.hn`>
   <div class="w-full">
-    <main class="flex flex-col gap-3 border-b border-zinc-700 pb-4 px-8">
+    <main
+      class="flex flex-col gap-3 border-b border-zinc-800 bg-zinc-900 py-4 px-8"
+    >
       <p class="text-zinc-400 text-sm">
         <span class="font-semibold">{time.split(", ")[0]}</span>
         at
@@ -28,7 +30,7 @@ const time = new Date(story.time * 1000).toLocaleString();
         by <span class="font-semibold">{story.by}</span>
       </p>
     </main>
-    <section class="flex flex-col gap-4 px-8">
+    <section class="flex flex-col gap-4 px-8 shadow-md">
       {
         story.kids?.map((child: string) => (
           <Comment id={child} isParent={true} />
