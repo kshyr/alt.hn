@@ -9,7 +9,7 @@ const storiesData = await fetch(
 const stories = await storiesData.json();
 ---
 
-<Layout title="alt.hn">
+<Layout title="alt.hn - Hacker News client">
 	<main class="flex flex-col gap-4 py-4 max-w-2xl px-8">
 		{
 			stories.map((id: string) => {

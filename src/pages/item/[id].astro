@@ -10,7 +10,7 @@ const story = await storyData.json();
 const time = new Date(story.time * 1000).toLocaleString();
 ---
 
-<Layout title=`{story.title} | alt.hn`>
+<Layout title={ story.title + " | alt.hn"}>
   <div class="w-full">
     <main
       class="flex flex-col gap-3 border-b border-zinc-800 bg-zinc-900 py-4 px-8"
